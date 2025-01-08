@@ -67,7 +67,6 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', userSchema);
 
-// Dans le fichier backend (server.js)
 
 // Route pour l'inscription
 app.post('/api/register', async (req, res) => {
@@ -168,13 +167,15 @@ app.post('/api/forgot-password', async (req, res) => {
     user.resetTokenExpiry = Date.now() + 3600000; // 1 heure
     await user.save();
     
+    // const resetLink = `${process.env.CLIENT_URL}/reset-password/${resetToken}`;
     const resetLink = `${process.env.CLIENT_URL}/reset-password/${resetToken}`;
+
     
     const result = await sendEmail(
       email,
       "Réinitialisation de votre mot de passe",
       {
-        name: user.prenom || email.split('@')[0], // Utilise le prénom s'il existe, sinon utilise la partie locale de l'email
+        name: user.prenom || email.split('@')[0], 
         resetLink: resetLink,
       },
       'resetPassword.html'
