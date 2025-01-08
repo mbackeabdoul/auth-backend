@@ -57,8 +57,8 @@ const sendEmail = async (email, subject, payload, template) => {
 
 // Schéma utilisateur modifié avec champs optionnels
 const userSchema = new mongoose.Schema({
-  prenom: { type: String, default: '' }, // Champ optionnel avec valeur par défaut
-  nom: { type: String, default: '' }, // Champ optionnel avec valeur par défaut
+  prenom: { type: String, default: '' },
+  nom: { type: String, default: '' }, 
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   resetToken: String,
