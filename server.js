@@ -35,7 +35,6 @@ const transporter = nodemailer.createTransport({
 });
 
 
-const cors = require('cors');
 
 // Ajoutez ces configurations CORS avant vos routes
 app.use(cors({
