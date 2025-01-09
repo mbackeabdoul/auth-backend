@@ -34,6 +34,20 @@ const transporter = nodemailer.createTransport({
   }
 });
 
+
+const cors = require('cors');
+
+// Ajoutez ces configurations CORS avant vos routes
+app.use(cors({
+  origin: [
+    'http://localhost:5173',  // URL de développement
+    'https://auth-backend-j34e.onrender.com', // URL de production de votre frontend
+  ],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
 // Fonction d'envoi d'email
 const sendEmail = async (email, subject, payload, template) => {
   try {
