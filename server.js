@@ -24,11 +24,14 @@ mongoose.connect(process.env.MONGODB_URI)
 
 // Configuration du transporteur email
 const transporter = nodemailer.createTransport({
-  service: 'gmail', 
+  host: 'smtp.gmail.com',
+  port: 587,  // Changez le port à 587 au lieu de 465
+  secure: false, // Changez à false
+  requireTLS: true, // Ajoutez cette ligne
   auth: {
     user: process.env.EMAIL_USERNAME,
-    pass: process.env.EMAIL_PASSWORD,
-  },
+    pass: process.env.EMAIL_PASSWORD
+  }
 });
 
 // Fonction d'envoi d'email
