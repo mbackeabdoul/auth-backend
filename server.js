@@ -189,8 +189,7 @@ app.post('/api/forgot-password', async (req, res) => {
     await user.save();
     
     // const resetLink = `${process.env.CLIENT_URL}/reset-password/${resetToken}`;
-    const resetLink = `${process.env.CLIENT_URL}/reset-password/${resetToken}`;
-
+    const resetLink = `https://joyful-malabi-b5abcd.netlify.app/reset-password/${resetToken}`;
     
     const result = await sendEmail(
       email,
