@@ -25,9 +25,9 @@ mongoose.connect(process.env.MONGODB_URI)
 // Configuration du transporteur email
 const transporter = nodemailer.createTransport({
   host: 'smtp.gmail.com',
-  port: 587,  // Changez le port à 587 au lieu de 465
-  secure: false, // Changez à false
-  requireTLS: true, // Ajoutez cette ligne
+  port: 587,
+  secure: false, 
+  requireTLS: true,
   auth: {
     user: process.env.EMAIL_USERNAME,
     pass: process.env.EMAIL_PASSWORD
@@ -35,17 +35,6 @@ const transporter = nodemailer.createTransport({
 });
 
 
-
-// Ajoutez ces configurations CORS avant vos routes
-app.use(cors({
-  origin: [
-    'http://localhost:5173',  // URL de développement
-    'https://auth-backend-j34e.onrender.com', // URL de production de votre frontend
-  ],
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}));
 
 // Fonction d'envoi d'email
 const sendEmail = async (email, subject, payload, template) => {
