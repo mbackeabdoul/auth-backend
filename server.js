@@ -150,6 +150,24 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
+app.get('/api/reset-password/:token', async (req, res) => {
+  try {
+    const { token } = req.params;
+    const user = await User.findOne({
+      resetToken: token,
+      resetTokenExpiry: { $gt: Date.now() }
+    });
+    
+    if (!user) {
+      return res.status(400).json({ message: 'Token invalide ou expiré' });
+    }
+    
+    res.json({ message: 'Token valide' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Erreur lors de la vérification du token' });
+  }
+});
 // Route pour la demande de réinitialisation du mot de passe
 app.post('/api/forgot-password', async (req, res) => {
   try {
